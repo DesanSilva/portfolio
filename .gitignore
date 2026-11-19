@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+.render/
+
+.lighthouseci/
+
+REQUIREMENTS.md
+.agents/
+tech_stack.md
