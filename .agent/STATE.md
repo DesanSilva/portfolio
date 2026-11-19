@@ -1,14 +1,14 @@
 # STATE
 
 phase: 0
-iteration: 0 (cap: 24)
+iteration: 1 (cap: 24)
 ponytail: full (fixed for the whole loop)
-last_gate: n/a
+last_gate: skipped (phase 0)
 
 ## Backlog (tick when the objective's own gate passes)
 
 ### Phase 0: Intake (no code; human checkpoint at the end)
-- [ ] For each `design/NN.png`: write `.agent/spec/screen-N.md` (template in LOOP.md), sampling colours with `scripts/probe.mjs`
+- [x] For each `design/NN.png`: write `.agent/spec/screen-N.md` (template in LOOP.md), sampling colours with `scripts/probe.mjs`
 - [ ] Write `.agent/expect.json` (schema in LOOP.md)
 - [ ] List ambiguities as assumptions A-n (do not ask)
 - HUMAN: review spec + expect.json, then run `node scripts/gate.mjs --lock`
@@ -45,7 +45,13 @@ last_gate: n/a
 
 ## Assumptions (A-n)
 
-(none yet)
+- A-1 Screen numbers follow filename sort (`about_me.png` = 1, `contact.png` = 2, `landing_page.png` = 3) because R-SCOPE-1 says so. The 3D notes and `tech_stack.md` call the hero screen 1. Human should fix this before `--lock` if the page order should be hero, about, contact.
+- A-2 Nav labels Projects and Research have no matching block in any PNG. No project or research cards to seed.
+- A-3 "View Resume" href is not drawn. Use `/docs/resume.pdf` when the page is built.
+- A-4 "Get In Touch" target is not drawn. Treat it as `#contact` (screen 2).
+- A-5 Portrait on screen 1 is a photograph. Do not crop the PNG (R-SCOPE-3). No separate file exists.
+- A-6 Font family is not identifiable. Do not guess a family. Weights are not measured.
+- A-7 Contact form has no action and no submit label. Phone and location have no visible href.
 
 ## Deviations (D-n)
 
@@ -55,3 +61,4 @@ last_gate: n/a
 
 | # | phase | objective | files touched | gate | ponytail footer (skipped / unchecked / risk) |
 |:--|:--|:--|:--|:--|:--|
+| 1 | 0 | Specs for the three PNGs | `.agent/spec/screen-1.md`, `screen-2.md`, `screen-3.md`, `.agent/STATE.md` | skipped (phase 0) | Skipped `expect.json` and the gate. Text was read from the images, not OCR. Field edges on screen 2 are ±10px where the dots cross the stroke. Risk: A-1 puts the hero last. |
