@@ -1,0 +1,225 @@
+{
+  "at": "2026-11-19T23:08:43+05:30",
+  "screens": [
+    {
+      "screen": 1,
+      "regions_checked": 7,
+      "verdict": "revise",
+      "findings": [
+        {
+          "id": "V1-01",
+          "severity": "blocker",
+          "region": "40,200 80x80",
+          "expected": "background #010101",
+          "actual": "#ffffff",
+          "evidence": "probe design/about_me.png #010101; .render/screen-1.png #ffffff. All three renders share sha256 150c34a84ff3dea7 (10705 bytes).",
+          "fix": "Replace the Astro starter in src/pages/index.astro with section data-screen=1 on a #010101 page."
+        },
+        {
+          "id": "V1-02",
+          "severity": "blocker",
+          "region": "390,62 141x24",
+          "expected": "logo bars plus LinkedIn, GitHub, and mail icons",
+          "actual": "empty white",
+          "evidence": "probe 390,62 40x24 design #646464, render #ffffff. Spec rows logo, icon-in, icon-gh, icon-mail.",
+          "fix": "Draw the bar mark and three icons as inline SVG at the spec coordinates, linked as in the spec."
+        },
+        {
+          "id": "V1-03",
+          "severity": "blocker",
+          "region": "1137,60 88x23",
+          "expected": "Projects, Research, Contact",
+          "actual": "empty white",
+          "evidence": "probe design #343435, render #ffffff. Gate R-SCOPE-2 screen 1 links failed.",
+          "fix": "Add the three nav links with hrefs #projects, #research, #contact. Text only on screen 1 (A-8)."
+        },
+        {
+          "id": "V1-04",
+          "severity": "blocker",
+          "region": "197,278 747x144",
+          "expected": "headline copy, ink about #e7e7e7",
+          "actual": "empty white",
+          "evidence": "probe 197,278 80x28 design #393939, render #ffffff. Copy absent from served HTML.",
+          "fix": "Place the verbatim headline from screen-1.md."
+        },
+        {
+          "id": "V1-05",
+          "severity": "blocker",
+          "region": "195,472 761x221",
+          "expected": "body copy, ink about #777777",
+          "actual": "empty white",
+          "evidence": "probe 195,472 80x28 design #1f1f1f, render #ffffff.",
+          "fix": "Place the verbatim body from screen-1.md in the mid grey."
+        },
+        {
+          "id": "V1-06",
+          "severity": "blocker",
+          "region": "197,859 569x40",
+          "expected": "two education lines, ink about #555555",
+          "actual": "empty white",
+          "evidence": "probe 197,859 80x15 design #131313, render #ffffff.",
+          "fix": "Place both education lines verbatim."
+        },
+        {
+          "id": "V1-07",
+          "severity": "blocker",
+          "region": "1182,180 542x583",
+          "expected": "portrait photograph",
+          "actual": "empty white",
+          "evidence": "probe 1400,400 80x80 design #5a5b5b, render #ffffff. R-SCOPE-3 forbids cropping the design PNG.",
+          "fix": "Use a separate portrait asset. Do not crop about_me.png."
+        }
+      ]
+    },
+    {
+      "screen": 2,
+      "regions_checked": 6,
+      "verdict": "revise",
+      "findings": [
+        {
+          "id": "V2-01",
+          "severity": "blocker",
+          "region": "40,200 80x80",
+          "expected": "background #010101",
+          "actual": "#ffffff",
+          "evidence": "probe design/contact.png #010101; .render/screen-2.png #ffffff. Same bytes as screen-1.png.",
+          "fix": "Add section data-screen=2. One shared header component is enough for the repeated logo, icons, and nav."
+        },
+        {
+          "id": "V2-02",
+          "severity": "blocker",
+          "region": "580,182 478x63",
+          "expected": "Get In Touch",
+          "actual": "empty white",
+          "evidence": "probe 580,182 80x40 design #444445, render #ffffff.",
+          "fix": "Place the title verbatim."
+        },
+        {
+          "id": "V2-03",
+          "severity": "blocker",
+          "region": "559,260 544x23",
+          "expected": "Open To Collaborate On Tech & Research Projects",
+          "actual": "empty white",
+          "evidence": "probe design #2b2c2c, render #ffffff.",
+          "fix": "Place the subtitle verbatim."
+        },
+        {
+          "id": "V2-04",
+          "severity": "blocker",
+          "region": "299,441 701x347",
+          "expected": "mail, GitHub, LinkedIn, Colombo, phone, with row icons",
+          "actual": "empty white",
+          "evidence": "probe 299,441 80x32 design #353535, render #ffffff. Gate missed those three links.",
+          "fix": "Five rows, verbatim text. Link only mail, GitHub, and LinkedIn (A-7)."
+        },
+        {
+          "id": "V2-05",
+          "severity": "blocker",
+          "region": "1049,411 566x431",
+          "expected": "Your Name, Your E-Mail, Message fields and the send icon",
+          "actual": "empty white",
+          "evidence": "probe 1049,411 80x40 design #080808, render #ffffff.",
+          "fix": "Three labelled fields and an inline SVG paper plane. No form action (A-7)."
+        },
+        {
+          "id": "V2-06",
+          "severity": "blocker",
+          "region": "652,1033 448x17",
+          "expected": "footer band #353738 and All Rights Reserved © Desan Silva 2026",
+          "actual": "#ffffff, no band",
+          "evidence": "probe 960,1040 40x20 design #353738, render #ffffff.",
+          "fix": "Add the footer band and the verbatim line."
+        }
+      ]
+    },
+    {
+      "screen": 3,
+      "regions_checked": 7,
+      "verdict": "revise",
+      "findings": [
+        {
+          "id": "V3-01",
+          "severity": "blocker",
+          "region": "40,200 80x80",
+          "expected": "background #020303 and a CSS placeholder where the grid will sit",
+          "actual": "#ffffff",
+          "evidence": "probe design/landing_page.png #020303; .render/screen-3.png #ffffff. Grid sample 1600,200 design #070809, render #ffffff. Canvas was hidden; the missing points are not the finding.",
+          "fix": "Add section data-screen=3 with the dark field and a CSS-only dot placeholder. Leave the WebGL module for phase 2."
+        },
+        {
+          "id": "V3-02",
+          "severity": "blocker",
+          "region": "104,652 975x178",
+          "expected": "Portfolio and Desan Silva",
+          "actual": "empty white; the only text on the page is Astro at the top left",
+          "evidence": "probe 104,680 80x40 design #525354, render #ffffff. Probe 8,8 80x24 on the render is #fdfdfd.",
+          "fix": "Place both strings. Desan Silva is the single h1."
+        },
+        {
+          "id": "V3-03",
+          "severity": "blocker",
+          "region": "99,860 1211x1",
+          "expected": "1px white hairline on the dark field",
+          "actual": "no hairline; the sample is white because the page is white",
+          "evidence": "probe design 99,860 80x1 #ffffff on #020303. Render sample #ffffff with no dark field.",
+          "fix": "One 1px rule under the name."
+        },
+        {
+          "id": "V3-04",
+          "severity": "blocker",
+          "region": "99,891 513x40",
+          "expected": "AI/ML Engineer & Researcher",
+          "actual": "empty white",
+          "evidence": "probe design #3b3e3e, render #ffffff.",
+          "fix": "Place the role line verbatim."
+        },
+        {
+          "id": "V3-05",
+          "severity": "blocker",
+          "region": "1239,926 232x44",
+          "expected": "View Resume outline button",
+          "actual": "empty white",
+          "evidence": "probe design #313434, render #ffffff. Gate missed the link.",
+          "fix": "Outline button to /docs/resume.pdf via withBase (A-3)."
+        },
+        {
+          "id": "V3-06",
+          "severity": "blocker",
+          "region": "1460,926 244x44",
+          "expected": "Get In Touch → filled button",
+          "actual": "empty white",
+          "evidence": "probe design #9d9e9e, render #ffffff.",
+          "fix": "Filled button to #contact. Arrow is an inline SVG (A-4)."
+        },
+        {
+          "id": "V3-07",
+          "severity": "blocker",
+          "region": "390,61 141x24",
+          "expected": "same header as screen 1",
+          "actual": "empty white",
+          "evidence": "Spec rows logo through nav-contact. Render is the starter page at every scroll position.",
+          "fix": "Reuse the screen 1 header. Do not repeat Projects, Research, or Contact as text on this screen (A-8)."
+        }
+      ]
+    }
+  ],
+  "code": [
+    {
+      "id": "C-01",
+      "severity": "blocker",
+      "file": "src/pages/index.astro",
+      "problem": "The page is the Astro starter: title and h1 are Astro, there is no data-screen, and none of the expect.json strings are in the HTML. global.css and src/lib/url.ts are never imported, so the built page stays the browser default white.",
+      "fix": "One index.astro with exactly three sections, the verbatim copy, and the shared header. Import global.css from the layout. Wire withBase for the resume href. No hero JS in this pass.",
+      "if_skipped": "R-SCOPE-1 and R-SCOPE-2 stay failed and every screen render stays the starter screenshot."
+    },
+    {
+      "id": "C-02",
+      "severity": "major",
+      "file": "lighthouserc.json",
+      "problem": "npm run lhci exits in the healthcheck: Chrome installation not found. verify itself passed (HTML 0.2 KB gz, JS 0, CSS 0).",
+      "fix": "Install Chrome or Chromium where Lighthouse looks, then rerun --full. Do not change the score gates.",
+      "if_skipped": "R-PERF-2 mobile and desktop stay failed on this machine."
+    }
+  ],
+  "verdict": "revise"
+}

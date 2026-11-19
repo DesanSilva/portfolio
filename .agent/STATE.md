@@ -1,7 +1,7 @@
 # STATE
 
 phase: 0
-iteration: 1 (cap: 24)
+iteration: 2 (cap: 24)
 ponytail: full (fixed for the whole loop)
 last_gate: skipped (phase 0)
 
@@ -9,7 +9,7 @@ last_gate: skipped (phase 0)
 
 ### Phase 0: Intake (no code; human checkpoint at the end)
 - [x] For each `design/NN.png`: write `.agent/spec/screen-N.md` (template in LOOP.md), sampling colours with `scripts/probe.mjs`
-- [ ] Write `.agent/expect.json` (schema in LOOP.md)
+- [x] Write `.agent/expect.json` (schema in LOOP.md)
 - [ ] List ambiguities as assumptions A-n (do not ask)
 - HUMAN: review spec + expect.json, then run `node scripts/gate.mjs --lock`
 
@@ -52,6 +52,7 @@ last_gate: skipped (phase 0)
 - A-5 Portrait on screen 1 is a photograph. Do not crop the PNG (R-SCOPE-3). No separate file exists.
 - A-6 Font family is not identifiable. Do not guess a family. Weights are not measured.
 - A-7 Contact form has no action and no submit label. Phone and location have no visible href.
+- A-8 Shared nav text is listed only on screen 1. The gate uses `getByText().first()` and requires that node inside the viewport, so repeating Projects, Research, or Contact on later screens fails. "Contact" is also a substring of "Get In Touch". The button string "Get In Touch →" is only on screen 3.
 
 ## Deviations (D-n)
 
@@ -62,3 +63,4 @@ last_gate: skipped (phase 0)
 | # | phase | objective | files touched | gate | ponytail footer (skipped / unchecked / risk) |
 |:--|:--|:--|:--|:--|:--|
 | 1 | 0 | Specs for the three PNGs | `.agent/spec/screen-1.md`, `screen-2.md`, `screen-3.md`, `.agent/STATE.md` | skipped (phase 0) | Skipped `expect.json` and the gate. Text was read from the images, not OCR. Field edges on screen 2 are ±10px where the dots cross the stroke. Risk: A-1 puts the hero last. |
+| 2 | 0 | Write expect.json | `.agent/expect.json`, `.agent/STATE.md` | skipped (phase 0) | Skipped the gate and a second pass over the PNGs. Nav text is only on screen 1 (A-8). Risk: icon links and the portrait are not in the contract, because they have no text. |
