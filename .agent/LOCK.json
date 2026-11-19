@@ -1,0 +1,15 @@
+{
+  "scripts/gate.mjs": "b7e24327641a93d838f032b18cf3a5e45200e48cfc8d5a40dafa5f168133732c",
+  "REQUIREMENTS.md": "26e369ed746a1e0070ac0a38dffe2a5223e2687a921b52ad2a28da595ad62ae3",
+  "AGENTS.md": "b3028aeca849fa0e46ba8ed50f0a85194d1873628e9478d063c255fc4cf7e13a",
+  "tech_stack.md": "c0ee5dafde54c4762f35db4799fca4528096a77b1065fd174152d663f97e5853",
+  "lighthouserc.json": "3aca29927d0ccb1739dbacf90cf385105cc46d4d601ada1d089994771a79948c",
+  "scripts/size-budget.mjs": "568c1414d0bf40bdfbb371b0e332e6a1caa4ef4dc95bb4548f7e295e39dc6ca7",
+  ".agent/spec/screen-1.md": "703ddda2b6e5d58d78244a0ec76b4120b10f797a62547e8e8acbdc82e0fb6261",
+  ".agent/spec/screen-2.md": "befab07dabfc7a572430906ee7bfefa7bd891ff1901bb525fe44bd5a083aec61",
+  ".agent/spec/screen-3.md": "b286fefdf628ca64e9f3fff1b0607a4c55e8ff3aad5a30c39a8aa796f533ca27",
+  "design/about_me.png": "eef51de56c81d211b64114a7aa922f22297de18cc199653edbeca25114733c0e",
+  "design/contact.png": "a3eae7a43196fd0d586d4cd0683060a32cf61d20601bfdf01885bb9070c2a247",
+  "design/landing_page.png": "9d97b385196d279b010399971275813356df3af7a4ac57bc01757a6edc19b996",
+  "design/profile.png": "7f8f08721efc0111756058ea28ad7a38db889abaf481d2aaa0e8bb116a873848"
+}
