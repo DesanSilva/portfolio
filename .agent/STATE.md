@@ -1,9 +1,9 @@
 # STATE
 
 phase: 0
-iteration: 2 (cap: 24)
+iteration: 3 (cap: 24)
 ponytail: full (fixed for the whole loop)
-last_gate: skipped (phase 0)
+last_gate: --skip-3d pass (R-SCOPE-1, R-SCOPE-2, R-SCOPE-4, R-A11Y-1, R-PERF-1). R-PERF-2 not run.
 
 ## Backlog (tick when the objective's own gate passes)
 
@@ -16,8 +16,8 @@ last_gate: skipped (phase 0)
 ### Phase 1: Static screens, zero JS (gate: `node scripts/gate.mjs --skip-3d`)
 - [ ] Tokens, font config, `BaseLayout.astro`, `global.css`, `withBase`
 - [ ] Screen 1 section (static; CSS-only placeholder behind the text)
-- [ ] Screen 2 section
-- [ ] Screen 3 section
+- [x] Screen 2 section
+- [x] Screen 3 section
 - [ ] Content collections seeded from the design (R-CONTENT-1)
 - [ ] Phase end: `--skip-3d --full` passes, critic (visual) run
 
@@ -56,7 +56,9 @@ last_gate: skipped (phase 0)
 
 ## Deviations (D-n)
 
-(none yet)
+- D-1 No portrait on screen 1. The only photo is `design/profile.png`, and R-SCOPE-3 forbids using a design PNG as page content. V1-07 stays open.
+- D-2 No canonical link. `astro.config` has no `site`.
+- D-3 Type is `ui-sans-serif`. No family is named (A-6), so the Astro font block is not set.
 
 ## Log
 
@@ -64,3 +66,4 @@ last_gate: skipped (phase 0)
 |:--|:--|:--|:--|:--|:--|
 | 1 | 0 | Specs for the three PNGs | `.agent/spec/screen-1.md`, `screen-2.md`, `screen-3.md`, `.agent/STATE.md` | skipped (phase 0) | Skipped `expect.json` and the gate. Text was read from the images, not OCR. Field edges on screen 2 are ±10px where the dots cross the stroke. Risk: A-1 puts the hero last. |
 | 2 | 0 | Write expect.json | `.agent/expect.json`, `.agent/STATE.md` | skipped (phase 0) | Skipped the gate and a second pass over the PNGs. Nav text is only on screen 1 (A-8). Risk: icon links and the portrait are not in the contract, because they have no text. |
+| 3 | 0 | Critique C-01: replace the starter with the three sections | `src/pages/index.astro`, `src/layouts/BaseLayout.astro`, `src/styles/global.css`, `.agent/STATE.md` | `--skip-3d` pass | Skipped the portrait (D-1), the font family (D-3), hero JS, and Lighthouse (C-02). Risk: screen 1 still fails V1-07, and the next critic will flag type and the uniform dot field. |

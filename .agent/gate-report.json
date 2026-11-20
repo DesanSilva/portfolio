@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-19T17:33:17.726Z",
+  "at": "2026-11-20T10:29:03.712Z",
   "pass": false,
   "results": [
     {
@@ -29,8 +29,8 @@
     },
     {
       "id": "R-SCOPE-2 copy present without JS",
-      "ok": false,
-      "detail": "Projects | Research | Contact | I'm An AI Engineer And Data Science Specialist With Industry Internship Experience And Academic Foundations In Computer Science. | Focused On Physics-Informed Machine Learning (PIML) And Scalable Data Engineering, Bridging Mathematical Modeling With Production-Ready Systems To Solve Complex Computational And Physical-World Problems. | Undergraduate - BSc. Computer Science ( UCSC, Sri Lanka) | Undergraduate - BSc. Data Science (Coventry University, UK) | Get In Touch | Open To Collaborate On Tech & Research Projects | desansilva0@gmail.com | https://github.com/desansilva | https://www.linkedin.com/in/desansilva/ | Colombo, Sri Lanka | +94 70 283 5523 | Your Name | Your E-Mail | Message | All Rights Reserved © Desan Silva 2026 | Portfolio | Desan Silva | AI/ML Engineer & Researcher | View Resume | Get In Touch →"
+      "ok": true,
+      "detail": ""
     },
     {
       "id": "R-A11Y-1 exactly one h1",
@@ -39,38 +39,38 @@
     },
     {
       "id": "R-SCOPE-1 screen count",
-      "ok": false,
+      "ok": true,
       "detail": "expected 3"
     },
     {
       "id": "R-SCOPE-2 screen 1 copy inside viewport",
-      "ok": false,
-      "detail": "Projects | Research | Contact | I'm An AI Engineer And Data Science Specialist With Industry Internship Experience And Academic Foundations In Computer Science. | Focused On Physics-Informed Machine Learning (PIML) And Scalable Data Engineering, Bridging Mathematical Modeling With Production-Ready Systems To Solve Complex Computational And Physical-World Problems. | Undergraduate - BSc. Computer Science ( UCSC, Sri Lanka) | Undergraduate - BSc. Data Science (Coventry University, UK)"
+      "ok": true,
+      "detail": ""
     },
     {
       "id": "R-SCOPE-2 screen 1 links",
-      "ok": false,
-      "detail": "Projects | Research | Contact"
+      "ok": true,
+      "detail": ""
     },
     {
       "id": "R-SCOPE-2 screen 2 copy inside viewport",
-      "ok": false,
-      "detail": "Get In Touch | Open To Collaborate On Tech & Research Projects | desansilva0@gmail.com | https://github.com/desansilva | https://www.linkedin.com/in/desansilva/ | Colombo, Sri Lanka | +94 70 283 5523 | Your Name | Your E-Mail | Message | All Rights Reserved © Desan Silva 2026"
+      "ok": true,
+      "detail": ""
     },
     {
       "id": "R-SCOPE-2 screen 2 links",
-      "ok": false,
-      "detail": "desansilva0@gmail.com | https://github.com/desansilva | https://www.linkedin.com/in/desansilva/"
+      "ok": true,
+      "detail": ""
     },
     {
       "id": "R-SCOPE-2 screen 3 copy inside viewport",
-      "ok": false,
-      "detail": "Portfolio | Desan Silva | AI/ML Engineer & Researcher | View Resume | Get In Touch →"
+      "ok": true,
+      "detail": ""
     },
     {
       "id": "R-SCOPE-2 screen 3 links",
-      "ok": false,
-      "detail": "View Resume | Get In Touch"
+      "ok": true,
+      "detail": ""
     },
     {
       "id": "R-SCOPE-4 no horizontal overflow at 390px",
