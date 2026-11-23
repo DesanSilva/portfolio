@@ -1,0 +1,11 @@
+<canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+<script>
+  type Conn = Navigator & { connection?: { saveData?: boolean } };
+  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+  if (canvas && !(navigator as Conn).connection?.saveData) {
+    const start = () => import('../lib/hero/grid').then((m) => m.mountHero(canvas)).catch(() => {});
+    const idle = () =>
+      'requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 3000 }) : setTimeout(start, 1500);
+    document.readyState === 'complete' ? idle() : addEventListener('load', idle, { once: true });
+  }
+</script>
