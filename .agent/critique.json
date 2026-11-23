@@ -1,0 +1,216 @@
+{
+  "at": "2026-11-20T16:06:20+05:30",
+  "screens": [
+    {
+      "screen": 1,
+      "regions_checked": 7,
+      "verdict": "revise",
+      "findings": [
+        {
+          "id": "V1-01",
+          "severity": "major",
+          "region": "1137,60 389x19",
+          "expected": "nav ink height about 19px, top at y=60",
+          "actual": "ink y=66–77 (12px), x=1138",
+          "evidence": "Bright-pixel bands. Design rows 60–78. Render rows 66–77. No font-size is set, so the links inherit 16px.",
+          "fix": "Set a nav font-size whose glyph band is about 19px. x is already within 8px."
+        },
+        {
+          "id": "V1-02",
+          "severity": "major",
+          "region": "196,277 749x146",
+          "expected": "four lines, glyph bands about 30px, block ending y=422",
+          "actual": "three lines, glyph bands about 21px, block 287–385",
+          "evidence": "Design bands 278–307, 317–353, 356–385, 395–422. Render bands 287–307, 326–353, 365–385. CSS font-size 28px draws a 21px band.",
+          "fix": "Raise the headline font-size until the band is about 30px and the text wraps to four lines inside the 747px width. Matching font-size to the spec ink number is what made it short."
+        },
+        {
+          "id": "V1-03",
+          "severity": "major",
+          "region": "195,472 762x222",
+          "expected": "six lines, glyph bands about 29px",
+          "actual": "four lines, glyph bands about 21px, block 484–613",
+          "evidence": "Design bands 472–500, 510–546, 549–585, 588–624, 627–655, 665–693. Render bands 484–504, 522–542, 560–580, 598–613.",
+          "fix": "Raise the body font-size until the band is about 29px and the paragraph wraps to six lines."
+        },
+        {
+          "id": "V1-04",
+          "severity": "major",
+          "region": "197,858 570x44",
+          "expected": "two lines, ink width 570px, bands 16px and 19px",
+          "actual": "ink width 364px, bands 10px and 13px",
+          "evidence": "Design 197,858 570x44, rows 859–874 and 883–901. Render 198,861 364x38, rows 861–870 and 886–898.",
+          "fix": "Raise both education sizes. Tops are already within 8px."
+        },
+        {
+          "id": "V1-05",
+          "severity": "major",
+          "region": "1500,40 400x220",
+          "expected": "sparse dots, upper right",
+          "actual": "no pixels above the background",
+          "evidence": "Pixels with channel >= 40: design 392, render 0. Background probe 40,200 is #010101 on both.",
+          "fix": "A CSS dot field on screen 1 only, in that corner. No image."
+        },
+        {
+          "id": "V1-06",
+          "severity": "deviation",
+          "region": "1182,162 591x605",
+          "expected": "portrait",
+          "actual": "empty",
+          "evidence": "Design bbox 1182,162 591x605. Render has no bright pixels in that box. design/profile.png is the only photo, and R-SCOPE-3 forbids using it.",
+          "fix": "Leave it out. Log D-1. Do not crop a design PNG."
+        },
+        {
+          "id": "V1-07",
+          "severity": "deviation",
+          "region": "page",
+          "expected": "brand font",
+          "actual": "ui-sans-serif",
+          "evidence": "A-6: no family is named. D-3 already records this.",
+          "fix": "Do not guess a family or add a font file."
+        }
+      ]
+    },
+    {
+      "screen": 2,
+      "regions_checked": 8,
+      "verdict": "revise",
+      "findings": [
+        {
+          "id": "V2-01",
+          "severity": "major",
+          "region": "559,185 544x60",
+          "expected": "Get In Touch glyph band about 60px",
+          "actual": "band 193–235 (43px), width 371px",
+          "evidence": "Design rows 185–244. Render rows 193–235. CSS font-size 56px.",
+          "fix": "Raise the title size until the band is about 60px. The left edge is already 559."
+        },
+        {
+          "id": "V2-02",
+          "severity": "major",
+          "region": "559,260 544x18",
+          "expected": "subtitle band about 18px across about 544px",
+          "actual": "band 265–276 (12px), width 371px",
+          "evidence": "Design rows 260–277. Render rows 265–276.",
+          "fix": "Raise the subtitle size. y is within 8px."
+        },
+        {
+          "id": "V2-03",
+          "severity": "major",
+          "region": "295,441 735x90",
+          "expected": "row glyph bands about 33px",
+          "actual": "bands about 16–18px",
+          "evidence": "Design mail 441–473, GitHub 521–557, LinkedIn 592–623. Render 448–463, 527–543, 597–614. Tops of these three match.",
+          "fix": "Raise the row font-size to about 32px ink. Leave the first three tops."
+        },
+        {
+          "id": "V2-04",
+          "severity": "major",
+          "region": "250,510 50x120",
+          "expected": "GitHub mark and LinkedIn mark",
+          "actual": "a circle-in-circle, and an empty rounded square",
+          "evidence": "Crops of design/contact.png at the row icons show the GitHub cat and the in mark. Render crops at 250,510 and 250,580 do not.",
+          "fix": "Replace those two inline SVGs. Header icons and the mail, pin, and phone marks can stay."
+        },
+        {
+          "id": "V2-05",
+          "severity": "major",
+          "region": "295,670 400x120",
+          "expected": "location ink from y=670, phone ink from y=743",
+          "actual": "location 685–701, phone 766–779",
+          "evidence": "Design rows 670–711 and 743–786. Render starts 15px and 23px lower.",
+          "fix": "Move those two tops to 670 and 743."
+        },
+        {
+          "id": "V2-06",
+          "severity": "major",
+          "region": "652,1032 450x18",
+          "expected": "footer line ink 17px, width about 450px",
+          "actual": "ink 1039–1050 (12px), width 290px",
+          "evidence": "Design 652,1032 450x23, rows 1033–1049. Render 653,1039 290x16. Band probe 960,1040 is #353738 on both.",
+          "fix": "Raise the footer font-size. The band colour and the 6px y shift can stay."
+        },
+        {
+          "id": "V2-07",
+          "severity": "major",
+          "region": "1500,180 380x200",
+          "expected": "faint point wave",
+          "actual": "flat #010101",
+          "evidence": "Pixels with channel >= 40 in that box: design 1489, render 0. A second box at 1680,430: design 544, render 0.",
+          "fix": "A CSS dot wave on the right of screen 2. Keep it out of the field strokes."
+        }
+      ]
+    },
+    {
+      "screen": 3,
+      "regions_checked": 7,
+      "verdict": "revise",
+      "findings": [
+        {
+          "id": "V3-01",
+          "severity": "major",
+          "region": "1400,80 400x300",
+          "expected": "dense points toward the top right, fading under the name",
+          "actual": "76 bright pixels against 1614 in the design",
+          "evidence": "Pixels with channel >= 80, canvas hidden. Design top-right 1614. Render top-right 76. Left of the name stays dark: probe 200,400 design #060707, render #030404. The rule at y=860 matches on both.",
+          "fix": "Bias the existing CSS dots toward the top right. Do not add the WebGL module in this pass."
+        },
+        {
+          "id": "V3-02",
+          "severity": "major",
+          "region": "104,652 146x28",
+          "expected": "Portfolio glyph band about 27px from y=653",
+          "actual": "band 659–674 (16px)",
+          "evidence": "Column x=110–220, threshold 180. Design 653–679. Render 659–674.",
+          "fix": "Raise the kicker size. The 6px y shift is inside tolerance."
+        },
+        {
+          "id": "V3-03",
+          "severity": "major",
+          "region": "104,680 560x150",
+          "expected": "Desan glyph band about 148px tall",
+          "actual": "band 707–800 (94px)",
+          "evidence": "Same column, threshold 180, after the kicker. Design continues to y=828. Render starts 27px lower and ends 28px early. CSS font-size is 132px.",
+          "fix": "Raise the name size until the D band is about 148px and its top is near y=680."
+        },
+        {
+          "id": "V3-04",
+          "severity": "major",
+          "region": "99,891 513x40",
+          "expected": "role ink y=892–920 (29px)",
+          "actual": "ink y=902–921 (20px)",
+          "evidence": "Threshold 160. Design rows 892–920. Render rows 902–921.",
+          "fix": "Raise the role size and move its top up about 10px."
+        },
+        {
+          "id": "V3-05",
+          "severity": "major",
+          "region": "1460,926 244x44",
+          "expected": "label and arrow on one line",
+          "actual": "arrow centred under the words",
+          "evidence": "Crop 1455,920 250x55. Design arrow sits to the right of the words. Render arrow is a second row. .btn is display:grid, so the SVG becomes its own row.",
+          "fix": "Use flex, one row, centred. Keep the clipped → span for the gate string."
+        }
+      ]
+    }
+  ],
+  "code": [
+    {
+      "id": "C-01",
+      "severity": "major",
+      "file": "src/styles/global.css",
+      "problem": ".btn is a grid with the label, the arrow SVG, and the clipped span as separate items, so the arrow drops under the label.",
+      "fix": "Make .btn a single-row flex. Keep .arrow-char clipped and out of the row.",
+      "if_skipped": "V3-05 stays failed."
+    },
+    {
+      "id": "C-02",
+      "severity": "major",
+      "file": "lighthouserc.json",
+      "problem": "lhci still exits in the healthcheck: Chrome installation not found. verify passed at HTML 4.9 KB gz and 0 JS.",
+      "fix": "Install Chrome or Chromium where Lighthouse looks. Do not change the score gates.",
+      "if_skipped": "R-PERF-2 mobile and desktop stay failed."
+    }
+  ],
+  "verdict": "revise"
+}

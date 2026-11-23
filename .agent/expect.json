@@ -1,0 +1,62 @@
+{
+  "screens": [
+    {
+      "file": "design/about_me.png",
+      "scale": 1,
+      "selector": "[data-screen='1']",
+      "texts": [
+        "Projects",
+        "Research",
+        "Contact",
+        "I'm An AI Engineer And Data Science Specialist With Industry Internship Experience And Academic Foundations In Computer Science.",
+        "Focused On Physics-Informed Machine Learning (PIML) And Scalable Data Engineering, Bridging Mathematical Modeling With Production-Ready Systems To Solve Complex Computational And Physical-World Problems.",
+        "Undergraduate - BSc. Computer Science ( UCSC, Sri Lanka)",
+        "Undergraduate - BSc. Data Science (Coventry University, UK)"
+      ],
+      "links": [
+        { "text": "Projects", "hrefContains": "#projects" },
+        { "text": "Research", "hrefContains": "#research" },
+        { "text": "Contact", "hrefContains": "#contact" }
+      ]
+    },
+    {
+      "file": "design/contact.png",
+      "scale": 1,
+      "selector": "[data-screen='2']",
+      "texts": [
+        "Get In Touch",
+        "Open To Collaborate On Tech & Research Projects",
+        "desansilva0@gmail.com",
+        "https://github.com/desansilva",
+        "https://www.linkedin.com/in/desansilva/",
+        "Colombo, Sri Lanka",
+        "+94 70 283 5523",
+        "Your Name",
+        "Your E-Mail",
+        "Message",
+        "All Rights Reserved © Desan Silva 2026"
+      ],
+      "links": [
+        { "text": "desansilva0@gmail.com", "hrefContains": "mailto:desansilva0@gmail.com" },
+        { "text": "https://github.com/desansilva", "hrefContains": "https://github.com/desansilva" },
+        { "text": "https://www.linkedin.com/in/desansilva/", "hrefContains": "https://www.linkedin.com/in/desansilva/" }
+      ]
+    },
+    {
+      "file": "design/landing_page.png",
+      "scale": 1,
+      "selector": "[data-screen='3']",
+      "texts": [
+        "Portfolio",
+        "Desan Silva",
+        "AI/ML Engineer & Researcher",
+        "View Resume",
+        "Get In Touch →"
+      ],
+      "links": [
+        { "text": "View Resume", "hrefContains": "/docs/resume.pdf" },
+        { "text": "Get In Touch", "hrefContains": "#contact" }
+      ]
+    }
+  ]
+}

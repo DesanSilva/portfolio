@@ -1,6 +1,62 @@
 @import "tailwindcss";
-html { color-scheme: dark; background: #000; }
+html { color-scheme: dark; background: #010101; }
+body { margin: 0; background: #010101; color: #eaeaea; font-family: ui-sans-serif, system-ui, sans-serif; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid #eaeaea; outline-offset: 2px; }
+.site-header { position: fixed; z-index: 20; left: 0; top: 0; width: 100%; height: 0; }
+.hero-bg { position: absolute; inset: 0; background: #020303 radial-gradient(circle, #cfcfcf 1px, transparent 1.25px) 80% 0 / 20px 18px;
+	-webkit-mask-image: radial-gradient(ellipse 70% 55% at 88% 12%, #000 0%, transparent 72%);
+	mask-image: radial-gradient(ellipse 70% 55% at 88% 12%, #000 0%, transparent 72%); }
+[data-screen="1"]::after { content: ""; position: absolute; top: 36px; right: 24px; width: 460px; height: 260px; pointer-events: none;
+	background: radial-gradient(circle, #8a8a8a 1px, transparent 1.3px) 0 0 / 36px 32px;
+	-webkit-mask-image: radial-gradient(ellipse at 75% 30%, #000 10%, transparent 72%);
+	mask-image: radial-gradient(ellipse at 75% 30%, #000 10%, transparent 72%); }
+[data-screen="2"]::before { content: ""; position: absolute; top: 90px; right: 0; width: 520px; height: 300px; pointer-events: none;
+	background: radial-gradient(circle, #6e6e6e 0.9px, transparent 1.15px) 0 0 / 16px 14px;
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 30%);
+	mask-image: linear-gradient(90deg, transparent, #000 30%); }
+[data-screen="2"]::after { content: ""; position: absolute; top: 120px; right: 0; width: 260px; height: 820px; pointer-events: none;
+	background: radial-gradient(circle, #6e6e6e 0.9px, transparent 1.15px) 0 0 / 13px 11px;
+	-webkit-mask-image: linear-gradient(#000, transparent 18%, #000 40%, transparent 62%, #000 82%, transparent);
+	mask-image: linear-gradient(#000, transparent 18%, #000 40%, transparent 62%, #000 82%, transparent); }
 .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
- opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+	opacity: 0; transition: opacity .6s ease; pointer-events: none; }
 .hero-canvas[data-ready] { opacity: 1; }
+.rule { height: 1px; background: #fff; }
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; box-sizing: border-box; height: 44px; border-radius: 2px; white-space: nowrap; }
+.nav { font-size: 25px; line-height: 19px; }
+.row { font-size: 38px; line-height: 33px; }
+.foot-line { font-size: 24px; line-height: 17px; }
+.btn.line { border: 1px solid #eaeaea; color: #eaeaea; }
+.btn.fill { background: #eaeaea; color: #050505; }
+.arrow-char { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.field { box-sizing: border-box; border: 1px solid #4d4e4e; background: #000; color: #eaeaea; border-radius: 40px; }
+.field.msg { border-radius: 16px; }
+.site-foot { background: #353738; color: #eaeaea; }
+label { color: #9a9a9a; }
+@media (min-width: 1200px) {
+	[data-screen] { position: relative; height: 1080px; overflow: hidden; }
+	[data-screen="3"] { background: #020303; }
+	.pin { position: absolute; margin: 0; }
+	.site-foot { position: absolute; left: 0; top: 2070px; width: 100%; height: 90px; }
+	.foot-line { position: absolute; left: 652px; top: 43px; margin: 0; }
+}
+@media (max-width: 1199px) {
+	body { display: flex; flex-direction: column; }
+	.site-header { position: static; order: 0; height: auto; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; padding: 16px; }
+	[data-screen="1"] { order: 1; }
+	[data-screen="2"] { order: 2; }
+	.site-foot { order: 2; padding: 24px 16px; text-align: center; }
+	[data-screen="3"] { order: 3; }
+	[data-screen] { padding: 24px 16px; }
+	.hero-bg { position: absolute; inset: 0; }
+	[data-screen="3"] { position: relative; }
+	.pin { position: static; width: auto !important; height: auto !important; max-width: 100%; white-space: normal !important; }
+	.stack > * { margin: 12px 0; }
+	.field { width: 100%; height: 48px; }
+	.field.msg { height: 140px; }
+	h1 { font-size: 48px !important; line-height: 1.05 !important; }
+	h2 { font-size: 36px !important; line-height: 1.1 !important; }
+	.row, .nav, .foot-line { font-size: 16px; line-height: 1.3; }
+}
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
