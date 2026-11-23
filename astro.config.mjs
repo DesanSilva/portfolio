@@ -16,7 +16,7 @@ export default defineConfig({
   build: { inlineStylesheets: 'always' },
   vite: { plugins: [tailwindcss()] },
   fonts: [
-    font('Outfit', '--font-display', [300]),
+    font('Outfit', '--font-display', [300, 400]),
     font('Montserrat', '--font-text', [500]),
     font('Inter', '--font-ui', [300]),
   ],

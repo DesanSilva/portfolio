@@ -63,8 +63,8 @@ export function mountHero(canvas: HTMLCanvasElement): () => void {
     const dt = Math.min(0.05, (now - (prev || now)) / 1000);
     prev = now;
     if (!still) elapsed += dt;
-    const k = 1 - Math.exp(-6 * dt);
-    px += (tx - px) * k; py += (ty - py) * k; pr += (tr - pr) * k;
+    const k = 1 - Math.exp(-2.7 * dt);
+    px += (tx - px) * k; py += (ty - py) * k; pr += (tr - pr) * (1 - Math.exp(-2 * dt));
     scroll += (tScroll - scroll) * (still ? 1 : 1 - Math.exp(-5 * dt));
     const i = Math.min(PRESETS.length - 2, Math.floor(scroll));
     const f = smooth(scroll - i);
