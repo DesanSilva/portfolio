@@ -26,6 +26,14 @@ pnpm-debug.log*
 
 .lighthouseci/
 
+
+# local notes, design references and assistant tooling (not part of the site)
+docs/
+AGENTS.md
+CLAUDE.md
 REQUIREMENTS.md
-.agents/
 tech_stack.md
+.agents/
+.claude/
+.cursor/
+.vscode/
