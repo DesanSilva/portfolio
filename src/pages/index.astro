@@ -1,10 +1,12 @@
 ---
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import logo from '../assets/logo.svg?raw';
 import github from '../assets/icons/github.svg?raw';
 import mail from '../assets/icons/mail.svg?raw';
+import huggingface from '../assets/icons/hugging-face.svg?raw';
 import linkedin from '../assets/icons/linkedin.svg?raw';
 import pin from '../assets/icons/pin.svg?raw';
 import phone from '../assets/icons/phone.svg?raw';
@@ -12,54 +14,102 @@ import profile from '../assets/profile.png';
 import { withBase } from '../lib/url';
 
 const email = 'desansilva0@gmail.com';
-const githubUrl = 'https://github.com/desansilva';
+const githubUrl = 'https://github.com/DesanSilva';
+const huggingfaceUrl = 'https://huggingface.co/desansilva';
 const linkedinUrl = 'https://www.linkedin.com/in/desansilva/';
+const all = (await getCollection('projects')).sort((a, b) => (a.data.rank ?? 1e6) - (b.data.rank ?? 1e6) || b.data.date.valueOf() - a.data.date.valueOf());
+const projects = all.filter((e) => e.data.kind === 'project');
+const research = all.filter((e) => e.data.kind === 'research');
+const words = (t: string) => t.split(' ');
+const about = [
+	'I’m An AI Engineer And Data Science Specialist With Industry Internship Experience And Academic Foundations In Computer Science.',
+	'Focused On Physics-Informed Machine Learning (PIML) And Scalable Data Engineering, Bridging Mathematical Modeling With Production-Ready Systems To Solve Complex Computational And Physical-World Problems.',
+];
 const contacts = [
-	{ icon: mail, text: email, href: `mailto:${email}`, cls: 'r-mail' },
-	{ icon: github, text: githubUrl, href: githubUrl, cls: 'r-github' },
-	{ icon: linkedin, text: linkedinUrl, href: linkedinUrl, cls: 'r-linkedin' },
-	{ icon: pin, text: 'Colombo, Sri Lanka', cls: 'r-pin' },
-	{ icon: phone, text: '+94 70 283 5523', cls: 'r-phone' },
+	{ icon: mail, text: email, href: `mailto:${email}` },
+	{ icon: github, text: githubUrl, href: githubUrl },
+	{ icon: huggingface, text: huggingfaceUrl, href: huggingfaceUrl },
+	{ icon: linkedin, text: linkedinUrl, href: linkedinUrl },
+	{ icon: pin, text: 'Colombo, Sri Lanka' },
+	{ icon: phone, text: '+94 70 283 5523' },
 ];
 ---
 <BaseLayout title="Desan Silva | AI/ML Engineer & Researcher" description="Portfolio of Desan Silva, AI/ML Engineer & Researcher.">
+	<script is:inline>matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.classList.add("js")</script>
 	<Hero />
-	<header class="top">
-		<a class="logo" href="#top" aria-label="Home"><Fragment set:html={logo} /></a>
-		<a class="soc s-in" href={linkedinUrl} aria-label="LinkedIn"><Fragment set:html={linkedin} /></a>
-		<a class="soc s-gh" href={githubUrl} aria-label="GitHub"><Fragment set:html={github} /></a>
+	<div id="cur-blob" class="cur" aria-hidden="true"></div><div id="cur-dot" class="cur" aria-hidden="true"></div>
+	<header class="top"><div class="bar">
+		<div class="brand">
+		<a class="logo" href={withBase('/')} aria-label="Home"><Fragment set:html={logo} /></a>
+		<a class="soc" href={githubUrl} aria-label="GitHub"><Fragment set:html={github} /></a>
+		<a class="soc" href={huggingfaceUrl} aria-label="Hugging Face"><Fragment set:html={huggingface} /></a>
+		<a class="soc" href={linkedinUrl} aria-label="LinkedIn"><Fragment set:html={linkedin} /></a>
 		<a class="soc s-ml" href={`mailto:${email}`} aria-label="Email"><Fragment set:html={mail} /></a>
+		</div>
 		<nav aria-label="Primary">
 			<a href="#projects">Projects</a>
 			<a href="#research">Research</a>
 			<a href="#contact">Contact</a>
 		</nav>
-	</header>
-	<main id="top">
-		<section data-screen="1" class="s1">
+	</div></header>
+	<main>
+		<section data-screen="1" class="s1"><div class="frame">
 			<p class="kicker">Portfolio</p>
 			<h1>Desan Silva</h1>
 			<hr />
 			<p class="tag">AI/ML Engineer &amp; Researcher</p>
 			<div class="cta">
-				<a class="btn line" href={withBase('/docs/resume.pdf')}>View Resume</a>
-				<a class="btn fill" href="#contact">Get In Touch{' '}<svg width="28" height="10" viewBox="0 0 28 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 5h27M23 1l4 4-4 4"/></svg></a>
+				<a class="btn line" href={withBase('/assets/docs/resume.pdf')}>View Resume</a>
+				<a class="btn fill" href="#contact">Get In Touch</a>
 			</div>
-		</section>
-		<section data-screen="2" class="s2">
+		</div></section>
+		<section data-screen="2" class="s2"><div class="stick"><div class="frame">
 			<div class="about">
-				<p>I’m An AI Engineer And Data Science Specialist With Industry Internship Experience And Academic Foundations In Computer Science.</p>
-				<p>Focused On Physics-Informed Machine Learning (PIML) And Scalable Data Engineering, Bridging Mathematical Modeling With Production-Ready Systems To Solve Complex Computational And Physical-World Problems.</p>
+				{about.map((t) => <p>{words(t).map((w) => <><span class="w">{w}</span>{' '}</>)}</p>)}
 			</div>
 			<Image class="portrait" src={profile} alt="Portrait of Desan Silva" width={480} loading="lazy" format="webp" />
 			<p class="edu">Undergraduate - BSc. Computer Science ( UCSC, Sri Lanka)<br />Undergraduate - BSc. Data Science (Coventry University, UK)</p>
+		</div></div></section>
+		<section data-screen="3" class="list" id="projects">
+			<div class="col">
+				<h2>Projects</h2>
+				<ul class="entries">
+					{projects.map((e) => (
+						<li class="entry">
+							<p class="meta">{e.data.date.getFullYear()}<span>{e.data.tags.join(' · ')}</span></p>
+							<div class="body">
+								<h3><a href={e.data.repoUrl}>{e.data.title}</a></h3>
+								<p class="desc">{e.data.description}</p>
+							</div>
+							<p class="label">{e.data.liveUrl && <a class="extra" href={e.data.liveUrl}>Live</a>}<span>GitHub</span></p>
+						</li>
+					))}
+				</ul>
+			</div>
 		</section>
-		<section data-screen="3" class="s3" id="contact">
+		<section data-screen="4" class="list" id="research">
+			<div class="col">
+				<h2>Research</h2>
+				<ul class="entries">
+					{research.map((e) => (
+						<li class="entry">
+							<p class="meta">{e.data.date.getFullYear()}<span>{e.data.tags.join(' · ')}</span></p>
+							<div class="body">
+								<h3><a href={withBase(e.data.pdfUrl!)}>{e.data.title}</a></h3>
+								<p class="desc">{e.data.description}</p>
+							</div>
+							<p class="label">{e.data.repoUrl && <a class="extra" href={e.data.repoUrl}>GitHub</a>}<span>Paper</span></p>
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+		<section data-screen="5" class="s3" id="contact"><div class="frame">
 			<h2>Get In Touch</h2>
 			<p class="sub">Open To Collaborate On Tech &amp; Research Projects</p>
 			<ul class="rows">
 				{contacts.map((c) => (
-					<li class={c.cls}>
+					<li>
 						<Fragment set:html={c.icon} />
 						{c.href ? <a href={c.href}>{c.text}</a> : <span>{c.text}</span>}
 					</li>
@@ -74,7 +124,92 @@ const contacts = [
 				<textarea id="message" name="message" required></textarea>
 				<button type="submit" aria-label="Send message"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M26 2L2 13l9 3 3 9zM26 2L11 16"/></svg></button>
 			</form>
-		</section>
+		</div></section>
 	</main>
-	<footer><p>All Rights Reserved{' '}&nbsp;© Desan Silva 2026</p></footer>
+	<footer><div class="frame"><p>All Rights Reserved{' '}&nbsp;© Desan Silva 2026</p></div></footer>
+<script>
+	// Header: hide on scroll down, show on scroll up, scrim once the page has moved.
+	const top = document.querySelector<HTMLElement>('.top');
+	if (top) {
+		let last = scrollY, ticking = false;
+		const run = () => {
+			ticking = false;
+			const y = scrollY, d = y - last;
+			top.classList.toggle('stuck', y > 40);
+			if (y < 40 || d < -6) top.classList.remove('away');
+			else if (d > 6) top.classList.add('away');
+			if (Math.abs(d) > 6 || y < 40) last = y;
+		};
+		addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(run); } }, { passive: true });
+	}
+	// Cursor: dot = pointer, blob = fixed-size follower that lags the dot and swells only over links.
+	const html = document.documentElement;
+	if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+		const blob = document.getElementById('cur-blob')!, dot = document.getElementById('cur-dot')!;
+		const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		let x = 0, y = 0, bx = 0, by = 0, hs = 1, hot = 1, down = false, raf = 0, prev = 0, plain = false, sk = 0;
+		const frame = (t: number) => {
+			const dt = Math.min(0.05, (t - (prev || t)) / 1000);
+			prev = t;
+			bx += (x - bx) * (calm ? 1 : 1 - Math.exp(-dt * 7));
+			by += (y - by) * (calm ? 1 : 1 - Math.exp(-dt * 7));
+			const target = hot * (down ? 0.85 : 1);
+			hs += (target - hs) * (calm ? 1 : 1 - Math.exp(-dt * 14));
+			blob.style.transform = `translate3d(${bx - 28}px,${by - 28}px,0) scale(${hs})`;
+			dot.style.transform = `translate3d(${x - 4}px,${y - 4}px,0)`;
+			raf = Math.hypot(x - bx, y - by) > 0.1 || Math.abs(hs - target) > 0.005 ? requestAnimationFrame(frame) : 0;
+			if (!raf) prev = 0;
+		};
+		const kick = () => { raf ||= requestAnimationFrame(frame); };
+		const probe = (el: Element | null) => {
+			const a = el?.closest?.('a, button, input, textarea, label');
+			hot = a && !a.matches('.entry h3 a') ? 1.7 : 1;
+			const p = !!el?.closest?.('.portrait');
+			if (p !== plain) { plain = p; html.classList.toggle('plain', p); }
+			kick();
+		};
+		addEventListener('pointermove', (e) => {
+			if (e.pointerType === 'touch') return;
+			if (!html.classList.contains('cursor')) { html.classList.add('cursor'); bx = e.clientX; by = e.clientY; }
+			html.classList.add('live');
+			x = e.clientX; y = e.clientY;
+			probe(e.target as Element);
+		}, { passive: true });
+		addEventListener('scroll', () => { cancelAnimationFrame(sk); sk = requestAnimationFrame(() => probe(document.elementFromPoint(x, y))); }, { passive: true });
+		addEventListener('pointerdown', () => { down = true; kick(); });
+		addEventListener('pointerup', () => { down = false; kick(); });
+		document.addEventListener('pointerleave', () => html.classList.remove('live'));
+		document.addEventListener('mouseleave', () => html.classList.remove('live'));
+	}
+	document.querySelector('.logo')?.addEventListener('click', (e) => { e.preventDefault(); scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
+	// Without scroll-driven CSS animations, fall back to a one-shot fade-in.
+	if (!CSS.supports('animation-timeline: view()') && document.documentElement.classList.contains('js') && 'IntersectionObserver' in window) {
+		const io = new IntersectionObserver((list) => list.forEach((x) => {
+			if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); }
+		}), { rootMargin: '0px 0px -8% 0px' });
+		document.querySelectorAll('.entry').forEach((el) => io.observe(el));
+	}
+	const words = document.querySelectorAll<HTMLElement>('.about .w');
+	const sec = document.querySelector<HTMLElement>('[data-screen="2"]');
+	const block = document.querySelector<HTMLElement>('.about');
+	if (document.documentElement.classList.contains('js') && words.length && sec && block) {
+		const n = words.length;
+		let raf = 0, last = -1;
+		const update = () => {
+			raf = 0;
+			const vh = innerHeight, travel = sec.offsetHeight - vh;
+			const p = travel > 10
+				? (vh * 0.5 - sec.getBoundingClientRect().top) / (vh * 0.5 + travel * 0.8)
+				: (vh * 0.85 - block.getBoundingClientRect().top) / (vh * 0.4 + block.offsetHeight);
+			const k = Math.min(1, Math.max(0, p)) * (n + 6);
+			if (k === last) return;
+			last = k;
+			words.forEach((w, i) => { w.style.opacity = String(Math.min(1, Math.max(0, (k - i) / 6))); });
+		};
+		const tick = () => { raf ||= requestAnimationFrame(update); };
+		addEventListener('scroll', tick, { passive: true });
+		addEventListener('resize', tick, { passive: true });
+		update();
+	}
+</script>
 </BaseLayout>

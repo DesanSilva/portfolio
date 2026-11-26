@@ -11,10 +11,10 @@ const { title, description } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="color-scheme" content="dark" />
 		<meta name="theme-color" content="#000000" />
+		<link rel="icon" href="data:," />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
-		<Font cssVariable="--font-display" preload />
+		<Font cssVariable="--font-display" preload={[{ weight: 400 }]} />
 		<Font cssVariable="--font-text" />
 		<Font cssVariable="--font-ui" />
 	</head>
