@@ -1,6 +1,6 @@
 # Desan Silva — Portfolio
 
-One-page static portfolio, deployed to <https://desansilva.github.io>.
+my portfolio, deployed to <https://desansilva.github.io>.
 
 ## Tech stack
 
