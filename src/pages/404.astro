@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+---
+<BaseLayout title="404 · Not found" description="This page does not exist.">
+	<Hero />
+	<main class="nf" data-screen="1">
+		<h1>404</h1>
+		<p>Not found</p>
+	</main>
+</BaseLayout>
+<style is:global>
+	html:has(.nf), html:has(.nf) body { height: 100%; overflow: hidden; }
+	.nf { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #020303; }
+	.nf > * { position: relative; z-index: 2; }
+	.nf h1 { position: static; font: 400 clamp(110px, 26vmin, 300px)/1 var(--display); letter-spacing: -.04em; color: #ececec; margin: 0; }
+	.nf p { font: 300 clamp(18px, 3.2vmin, 36px)/1.2 var(--display); color: #9a9a9a; letter-spacing: .08em; text-transform: lowercase; margin: 1.2vmin 0 0; }
+</style>
