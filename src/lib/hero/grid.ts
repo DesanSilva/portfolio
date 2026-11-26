@@ -26,7 +26,7 @@ export function mountHero(canvas: HTMLCanvasElement): () => void {
 
   let raf = 0, stopped = false;
   let tx = 0, ty = 0, px = 0, py = 0, pr = 0, tr = 0;
-  let scroll = 0, tScroll = 0, elapsed = still ? 20 : 0, prev = 0, last = 0, unit = innerHeight;
+  let scroll = 0, tScroll = 0, elapsed = still ? 20 : 0, prev = 0, last = 0;
   let u: Record<string, WebGLUniformLocation | null>;
 
   const resize = () => {
@@ -34,14 +34,28 @@ export function mountHero(canvas: HTMLCanvasElement): () => void {
     canvas.width = Math.max(1, Math.round(innerWidth * dpr));
     canvas.height = Math.max(1, Math.round(innerHeight * dpr));
     gl.viewport(0, 0, canvas.width, canvas.height);
+    measure();
     gl.uniform1f(u.aspect, innerWidth / Math.max(1, innerHeight));
     gl.uniform1f(u.vh, canvas.height);
-    unit = document.querySelector<HTMLElement>('[data-screen]')?.offsetHeight || innerHeight;
     onScroll();
     kick();
   };
+  // Preset position: 0 landing, 1 about (held while its text is revealed), 2 contact.
+  let tops: number[] = [];
+  const measure = () => {
+    tops = [...document.querySelectorAll<HTMLElement>('[data-screen]')].map((s) => s.offsetTop);
+  };
+  const position = () => {
+    const y = scrollY, n = tops.length;
+    let i = 0;
+    while (i < n - 1 && y >= tops[i + 1]) i++;
+    if (i >= n - 1) return n - 1;
+    // Landing/about hold their preset, then blend over the last viewport; later screens drift across their whole length.
+    const start = i >= 2 ? tops[i] : Math.max(tops[i], tops[i + 1] - innerHeight);
+    return i + Math.max(0, Math.min(1, (y - start) / Math.max(1, tops[i + 1] - start)));
+  };
   const onScroll = () => {
-    tScroll = Math.max(0, Math.min(PRESETS.length - 1, scrollY / unit));
+    tScroll = position();
     if (still) scroll = tScroll;
     kick();
   };
@@ -63,8 +77,8 @@ export function mountHero(canvas: HTMLCanvasElement): () => void {
     const dt = Math.min(0.05, (now - (prev || now)) / 1000);
     prev = now;
     if (!still) elapsed += dt;
-    const k = 1 - Math.exp(-6 * dt);
-    px += (tx - px) * k; py += (ty - py) * k; pr += (tr - pr) * k;
+    const k = 1 - Math.exp(-2.7 * dt);
+    px += (tx - px) * k; py += (ty - py) * k; pr += (tr - pr) * (1 - Math.exp(-2 * dt));
     scroll += (tScroll - scroll) * (still ? 1 : 1 - Math.exp(-5 * dt));
     const i = Math.min(PRESETS.length - 2, Math.floor(scroll));
     const f = smooth(scroll - i);
@@ -104,7 +118,8 @@ export function mountHero(canvas: HTMLCanvasElement): () => void {
       addEventListener('pointermove', onMove, { passive: true });
       addEventListener('blur', onBlur);
     }
-    scroll = tScroll = Math.max(0, Math.min(PRESETS.length - 1, scrollY / (document.querySelector<HTMLElement>('[data-screen]')?.offsetHeight || innerHeight)));
+    measure();
+    scroll = tScroll = position();
     resize();
   };
   const onLost = (e: Event) => { e.preventDefault(); stopped = true; cancelAnimationFrame(raf); delete canvas.dataset.ready; };
